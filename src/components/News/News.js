@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { news } from './data'
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
+import { Button, ModalBody, ModalFooter } from 'reactstrap'
 import FormGroup from 'reactstrap/es/FormGroup'
 import Input from 'reactstrap/es/Input'
-
-let lastId = 0
+import ShowNews from './ShowNews'
+import CustomModal from './customModal'
 
 class News extends Component {
   state = {
@@ -16,8 +16,10 @@ class News extends Component {
     link: null,
     current_id: null,
     isEditing: {},
-    newValueTitle: null
+    newValueTitle: null,
+    lastId: 0
   }
+
   toggle = () => {
     this.setState(prevState => ({
       modal: !prevState.modal
@@ -32,13 +34,6 @@ class News extends Component {
     })
   }
 
-  toggleAll = () => {
-    this.setState({
-      nestedModal: !this.state.nestedModal,
-      closeAll: true
-    })
-  }
-
   decreaseRequest = (id) => {
     const news = this.state.news
     const index = news.findIndex((item) => item.id === id)
@@ -50,7 +45,7 @@ class News extends Component {
   }
 
   deleteLink = (id, indexArr) => {
-    const {news}=this.state
+    const { news } = this.state
     const item = news.map((item) => {
       if (item.id === id) {
         const arr = item.links
@@ -73,53 +68,9 @@ class News extends Component {
       news[index].links = [...news[index].links, link]
       this.setState({ news: news })
     }
-
     this.toggleNested()
   }
 
-  showNews = () => {
-    const { isEditing } = this.state
-
-    return this.state.news.map((item) => {
-      lastId = item.id
-
-      return (
-        <tr key={item.id}>
-          <th scope="row">
-            <span>{item.id}</span>
-          </th>
-          <td
-            onClick={() => this.decreaseRequest(item.id)}
-            onDoubleClick={() => this.setEditable(item)}
-          >
-            {
-              isEditing.id === item.id
-                ? <input onKeyUp={(e) => this.setValueTitle(e, item.id)} defaultValue={item.title}/>
-                : <span>{item.title}</span>
-            }
-          </td>
-          <td>
-            <button className='badge badge-success float-right p-2 ml-3 '
-                    onClick={() => this.toggleNested(item.id)}>+
-            </button>
-            {
-              item.links.map((link, index) => {
-                return (
-
-                  <span key={index} className='badge badge-info ml-2'> <span
-                    onClick={() => this.deleteLink(item.id, index)}
-                    className='badge badge-danger ml-1'>X</span>{link}</span>
-                )
-              })
-            }
-          </td>
-          <td>
-            {item.request}
-          </td>
-        </tr>
-      )
-    })
-  }
   setEditable = (item) => {
     this.setState({ isEditing: item })
   }
@@ -129,21 +80,18 @@ class News extends Component {
 
     if (e.keyCode === 13) {
       this.setState({ ...this.state, isEditing: {} })
-
     }
-
     const index = news.findIndex((item) => item.id === id)
     if (index > -1) {
       news[index].title = e.target.value
       this.setState({ news: news })
     }
-
   }
 
   addRow = () => {
     const { temp } = this.state
-    this.setState({ news: [...this.state.news, { id: lastId + 1 ,...temp, }] })
-    this.setState({temp:{}})
+    this.setState({ news: [...this.state.news, { id: this.state.lastId + 1, ...temp, }] })
+    this.setState({ temp: {} })
     this.toggle()
 
   }
@@ -158,28 +106,41 @@ class News extends Component {
   }
 
   render () {
-    console.log(this.state)
+
     return (
-      <div>
+      <Fragment>
 
         <table className="table table-striped table-hover">
           <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">عنوان خبرگذاری</th>
-            <th scope="col">لینک ها</th>
+            <th className='text-center' scope="col">لینک ها</th>
             <th scope="col">تعداد درخواست</th>
+            <th scope="col">حذف خبرگذاری</th>
           </tr>
           </thead>
           <tbody>
-          {this.showNews()}
+
+          <ShowNews
+            state={this.state}
+            decreaseRequest={this.decreaseRequest}
+            setEditable={this.setEditable}
+            setValueTitle={this.setValueTitle}
+            toggleNested={this.toggleNested}
+            deleteLink={this.deleteLink}
+            getLastId={(lastId) => this.state.lastId !== lastId ? this.setState({ lastId: lastId }) : null}
+          />
+
           </tbody>
         </table>
+        <Button color="success" onClick={this.toggle}>+ افزودن خبرگذاری جدید</Button>
 
-        <div>
-          <Button color="danger" onClick={this.toggle}>افزودن خبرگذاری جدید</Button>
-          <Modal isOpen={this.state.modal} toggle={this.toggle}>
-            <ModalHeader toggle={this.toggle}>درج خبرگذاری جدید</ModalHeader>
+        <CustomModal
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+          header='درج خبرگذاری جدید'
+          children={
             <ModalBody>
               <FormGroup>
                 <Input name='title' onChange={this.getValue}
@@ -191,31 +152,32 @@ class News extends Component {
               <FormGroup>
                 <Input name="request" onChange={this.getValue} placeholder="تعداد درخواست"/>
               </FormGroup>
+              <ModalFooter>
+                <Button color="primary" onClick={this.addRow}>درج</Button>{' '}
+                <Button className='mr-3' color="danger" onClick={this.toggle}>انصراف</Button>
+              </ModalFooter>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.addRow}>درج</Button>{' '}
-              <Button className='mr-3' color="danger" onClick={this.toggle}>انصراف</Button>
-            </ModalFooter>
-          </Modal>
+          }
+        />
 
-
-          <Modal isOpen={this.state.nestedModal} toggle={this.toggleNested}>
-            <ModalHeader>افزودن لینک جدید </ModalHeader>
+        <CustomModal
+          isOpen={this.state.nestedModal}
+          toggle={this.toggleNested}
+          header='افزودن لینک جدید'
+          children={
             <ModalBody>
               <FormGroup>
                 <Input onChange={this.setValueLink} placeholder='لینک جدید را وارد نمایید'/>
               </FormGroup>
-
+              <ModalFooter>
+                <Button color="primary" onClick={this.addLink}>افزودن</Button>{' '}
+                <Button color="danger mr-2" onClick={this.toggleNested}>انصراف </Button>
+              </ModalFooter>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.addLink}>افزودن</Button>{' '}
-              <Button color="secondary" onClick={this.toggleAll}>انصراف </Button>
-            </ModalFooter>
-          </Modal>
 
-        </div>
-
-      </div>
+          }
+        />
+      </Fragment>
     )
   }
 }

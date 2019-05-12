@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="017d0928-76ba-4338-b605-717acb384e86" name="Default Changelist" comment="">
+    <list default="true" id="017d0928-76ba-4338-b605-717acb384e86" name="Default Changelist" comment="commit">
+      <change afterPath="$PROJECT_DIR$/src/components/News/ShowNews.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/News/customModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/News/News.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/News/News.js" afterDir="false" />
     </list>
@@ -17,14 +20,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/News/News.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+            <state relative-caret-position="208">
+              <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
               <folding>
-                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#0#50#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/News/ShowNews.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -52,6 +64,11 @@
       <find>X</find>
       <find>x</find>
       <find>delete</find>
+      <find>last</find>
+      <find>lastId</find>
+      <find>addr</find>
+      <find>addrow</find>
+      <find>map</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src</dir>
@@ -64,7 +81,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/components/Formik/Formik.js" />
-        <option value="$PROJECT_DIR$/src/components/News.js" />
         <option value="$PROJECT_DIR$/dummy.json" />
         <option value="$PROJECT_DIR$/src/assets/scss/_init.scss" />
         <option value="$PROJECT_DIR$/src/index.js" />
@@ -75,7 +91,12 @@
         <option value="$PROJECT_DIR$/src/components/modals/ModalAddLink.js" />
         <option value="$PROJECT_DIR$/src/components/modals/ModalAddRow.js" />
         <option value="$PROJECT_DIR$/src/components/modals/CustomModal.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/components/News.js" />
+        <option value="$PROJECT_DIR$/src/components/News/Modals.js" />
+        <option value="$PROJECT_DIR$/src/components/News/customModal.js" />
         <option value="$PROJECT_DIR$/src/components/News/News.js" />
+        <option value="$PROJECT_DIR$/src/components/News/ShowNews.js" />
       </list>
     </option>
   </component>
@@ -166,12 +187,21 @@
       <workItem from="1557400226263" duration="3633000" />
       <workItem from="1557476422291" duration="24392000" />
       <workItem from="1557553680887" duration="20452000" />
-      <workItem from="1557640549111" duration="977000" />
+      <workItem from="1557640549111" duration="13290000" />
+      <workItem from="1557655531804" duration="2044000" />
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1557641700296</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1557641700296</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60263000" />
+    <option name="totallyTimeSpent" value="74620000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1024" height="743" extended-state="6" />
@@ -191,39 +221,22 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32899022" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.17100978" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Unicode Browser" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32967034" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+  </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/components/Formik/Formik.js" />
-    <entry file="file://$PROJECT_DIR$/src/components/News.js" />
     <entry file="file://$PROJECT_DIR$/dummy.json" />
     <entry file="file://$PROJECT_DIR$/src/assets/scss/_init.scss">
       <provider selected="true" editor-type-id="text-editor">
@@ -280,13 +293,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/News/News.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="52" column="32" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+        <state relative-caret-position="368">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/News.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/reactstrap/src/Modal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="332" column="14" lean-forward="true" selection-start-line="332" selection-start-column="14" selection-end-line="332" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/News/customModal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="37" lean-forward="true" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/News/News.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/News/ShowNews.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="43" column="13" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
         </state>
       </provider>
     </entry>
