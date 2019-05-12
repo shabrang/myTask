@@ -12,12 +12,7 @@ class News extends Component {
     modal: false,
     nestedModal: false,
     closeAll: false,
-    temp: {
-      'id': null,
-      'title': null,
-      'links': [],
-      'request': null
-    },
+    temp: {},
     link: null,
     current_id: null,
     isEditing: {},
@@ -55,6 +50,7 @@ class News extends Component {
   }
 
   deleteLink = (id, indexArr) => {
+    const {news}=this.state
     const item = news.map((item) => {
       if (item.id === id) {
         const arr = item.links
@@ -146,7 +142,8 @@ class News extends Component {
 
   addRow = () => {
     const { temp } = this.state
-    this.setState({ news: [...this.state.news, { ...temp, id: lastId + 1 }] })
+    this.setState({ news: [...this.state.news, { id: lastId + 1 ,...temp, }] })
+    this.setState({temp:{}})
     this.toggle()
 
   }
@@ -161,6 +158,7 @@ class News extends Component {
   }
 
   render () {
+    console.log(this.state)
     return (
       <div>
 
