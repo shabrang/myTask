@@ -17,4 +17,17 @@ export const news = [
     'links': [ 'http://mashregh.com' ],
     'request': 500
   },
+  {
+    'id': 4,
+    'title': 'tabnak news',
+    'links': [ 'http://tabnak.ir' ,'http://tabnak.ir/dla'],
+    'request': 350
+  },
+  {
+    'id': 5,
+    'title': 'mehr news',
+    'links': [ 'https://mehrnews.com' ],
+    'request': 400
+  },
+
 ]

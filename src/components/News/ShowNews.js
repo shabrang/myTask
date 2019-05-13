@@ -26,7 +26,7 @@ class ShowNews extends Component {
     const { news } = this.props.state
     const index = news.findIndex((item) => item.id === id)
     if (index > -1) {
-      news.splice(id - 1, 1)
+      news.splice(index, 1)
 
     }
     this.setState({ news: news })
@@ -36,10 +36,13 @@ class ShowNews extends Component {
     const { isEditing } = this.props.state
 
     if (isEditing.id === item.id) {
-      return <input onKeyUp={(e) => this.props.setValueTitle(e, item.id)} defaultValue={item.title}/>
+      return <input onKeyUp={(e) => this.props.setValueTitle(e, item.id)}
+                    defaultValue={item.title}/>
     }
     return <span>{item.title}</span>
   }
+
+
 
   render () {
 
@@ -47,12 +50,9 @@ class ShowNews extends Component {
 
     const newsItems = news.map((item) => {
       lastId = item.id
-
       return (
         <tr key={item.id}>
-          <th scope="row">
-            <span>{item.id}</span>
-          </th>
+          <td scope="row">{item.id}</td>
           <td
             onClick={() => this.props.decreaseRequest(item.id)}
             onDoubleClick={() => this.props.setEditable(item)}
@@ -68,9 +68,12 @@ class ShowNews extends Component {
           </td>
           <td>{item.request}</td>
           <td>
-            <span className='btn btn-danger'
-                  onClick={() => this.deleteRow(item.id)}>حذف
+            <span className='btn btn-danger p-0 pr-1 pl-1'
+                  onClick={() => this.deleteRow(item.id)}>x
             </span>
+          </td>
+          <td>
+            <input type='checkbox' onChange={() =>  this.props.getCheckDelete(item.id)}/>
           </td>
         </tr>
       )

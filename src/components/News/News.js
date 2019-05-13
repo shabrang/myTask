@@ -17,7 +17,8 @@ class News extends Component {
     current_id: null,
     isEditing: {},
     newValueTitle: null,
-    lastId: 0
+    lastId: 0,
+    checkDelete: []
   }
 
   toggle = () => {
@@ -35,7 +36,7 @@ class News extends Component {
   }
 
   decreaseRequest = (id) => {
-    const news = this.state.news
+    const { news } = this.state
     const index = news.findIndex((item) => item.id === id)
     if (index > -1) {
       news[index].request -= 1
@@ -105,19 +106,31 @@ class News extends Component {
     })
   }
 
+  deleteSelected = () => {
+    const { news, checkDelete } = this.state
+    checkDelete.map((item) => {
+      const indexNews = news.findIndex((news) => news.id === item)
+      return news.splice(indexNews, 1)
+
+    })
+    this.setState({ news: news })
+  }
+
   render () {
+    console.log(this.state.checkDelete)
 
     return (
       <Fragment>
 
         <table className="table table-striped table-hover">
           <thead>
-          <tr>
+          <tr className='text-center'>
             <th scope="col">#</th>
             <th scope="col">عنوان خبرگذاری</th>
-            <th className='text-center' scope="col">لینک ها</th>
-            <th scope="col">تعداد درخواست</th>
-            <th scope="col">حذف خبرگذاری</th>
+            <th scope="col">لینک های خبرگذاری</th>
+            <th scope="col">درخواست ها</th>
+            <th scope="col">حذف </th>
+            <th scope="col">انتخاب</th>
           </tr>
           </thead>
           <tbody>
@@ -130,10 +143,13 @@ class News extends Component {
             toggleNested={this.toggleNested}
             deleteLink={this.deleteLink}
             getLastId={(lastId) => this.state.lastId !== lastId ? this.setState({ lastId: lastId }) : null}
+            getCheckDelete={(id) => this.setState({ checkDelete: [...this.state.checkDelete, id] })}
           />
 
           </tbody>
+
         </table>
+        <button className='btn btn-danger float-left' onClick={this.deleteSelected}>حذف همه انتخاب ها </button>
         <Button color="success" onClick={this.toggle}>+ افزودن خبرگذاری جدید</Button>
 
         <CustomModal
@@ -147,13 +163,13 @@ class News extends Component {
                        placeholder="عنوان خبرگذاری جدید را وارد نمایید"/>
               </FormGroup>
               <FormGroup>
-                <Input name="links" onChange={this.getValue} placeholder="لینک ها"/>
+                <Input name="links" onChange={this.getValue} placeholder="لینک های این خبرگذاری را وارد نمایید"/>
               </FormGroup>
               <FormGroup>
                 <Input name="request" onChange={this.getValue} placeholder="تعداد درخواست"/>
               </FormGroup>
               <ModalFooter>
-                <Button color="primary" onClick={this.addRow}>درج</Button>{' '}
+                <Button color="primary" onClick={this.addRow}>افزودن</Button>{' '}
                 <Button className='mr-3' color="danger" onClick={this.toggle}>انصراف</Button>
               </ModalFooter>
             </ModalBody>
