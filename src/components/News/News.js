@@ -11,14 +11,14 @@ class News extends Component {
     news: news,
     modal: false,
     nestedModal: false,
-    closeAll: false,
     temp: {},
     link: null,
     current_id: null,
     isEditing: {},
     newValueTitle: null,
     lastId: 0,
-    checkDelete: []
+    checkDelete: [],
+    message: null
   }
 
   toggle = () => {
@@ -30,7 +30,6 @@ class News extends Component {
   toggleNested = (id) => {
     this.setState({
       nestedModal: !this.state.nestedModal,
-      closeAll: false,
       current_id: id
     })
   }
@@ -39,22 +38,24 @@ class News extends Component {
     const { news } = this.state
     const index = news.findIndex((item) => item.id === id)
     if (index > -1) {
-      news[index].request -= 1
+      if (news[index].request > 0) {
+        news[index].request -= 1
+      } else {
+        this.showMessage('تعداد درخواست های این خبرگزاری به اتمام رسیده است.')
+      }
     }
     this.setState({ news: news })
+  }
 
+  showMessage = (message) => {
+    this.setState({ message: message })
   }
 
   deleteLink = (id, indexArr) => {
     const { news } = this.state
-    const item = news.map((item) => {
-      if (item.id === id) {
-        const arr = item.links
-        arr.splice(indexArr, 1)
-      }
-      return item
-    })
-    this.setState({ news: item })
+    const index = news.findIndex((item) => item.id === id)
+    news[index].links.splice(indexArr, 1)
+    this.setState({ news })
   }
 
   setValueLink = (e) => {
@@ -67,7 +68,7 @@ class News extends Component {
     if (index > -1) {
       console.log(link)
       news[index].links = [...news[index].links, link]
-      this.setState({ news: news })
+      this.setState({ news: news, link: '' })
     }
     this.toggleNested()
   }
@@ -117,8 +118,6 @@ class News extends Component {
   }
 
   render () {
-    console.log(this.state.checkDelete)
-
     return (
       <Fragment>
 
@@ -126,10 +125,10 @@ class News extends Component {
           <thead>
           <tr className='text-center'>
             <th scope="col">#</th>
-            <th scope="col">عنوان خبرگذاری</th>
-            <th scope="col">لینک های خبرگذاری</th>
+            <th scope="col">عنوان خبرگزاری</th>
+            <th scope="col">لینک های خبرگزاری</th>
             <th scope="col">درخواست ها</th>
-            <th scope="col">حذف </th>
+            <th scope="col">حذف</th>
             <th scope="col">انتخاب</th>
           </tr>
           </thead>
@@ -149,21 +148,23 @@ class News extends Component {
           </tbody>
 
         </table>
-        <button className='btn btn-danger float-left' onClick={this.deleteSelected}>حذف همه انتخاب ها </button>
-        <Button color="success" onClick={this.toggle}>+ افزودن خبرگذاری جدید</Button>
+        <button className='btn btn-danger float-left' onClick={this.deleteSelected}>حذف همه انتخاب ها</button>
+        <Button color="success" onClick={this.toggle}>+ افزودن خبرگزاری جدید</Button>
+
+        {this.state.message !== null ? <div className='alert alert-danger mt-5'>{this.state.message}</div> : null}
 
         <CustomModal
           isOpen={this.state.modal}
           toggle={this.toggle}
-          header='درج خبرگذاری جدید'
+          header='درج خبرگزاری جدید'
           children={
             <ModalBody>
               <FormGroup>
                 <Input name='title' onChange={this.getValue}
-                       placeholder="عنوان خبرگذاری جدید را وارد نمایید"/>
+                       placeholder="عنوان خبرگزاری جدید را وارد نمایید"/>
               </FormGroup>
               <FormGroup>
-                <Input name="links" onChange={this.getValue} placeholder="لینک های این خبرگذاری را وارد نمایید"/>
+                <Input name="links" onChange={this.getValue} placeholder="لینک های این خبرگزاری را وارد نمایید"/>
               </FormGroup>
               <FormGroup>
                 <Input name="request" onChange={this.getValue} placeholder="تعداد درخواست"/>

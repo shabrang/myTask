@@ -27,7 +27,7 @@ export const news = [
     'id': 5,
     'title': 'mehr news',
     'links': [ 'https://mehrnews.com' ],
-    'request': 400
+    'request': 2
   },
 
 ]
