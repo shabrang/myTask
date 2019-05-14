@@ -50,7 +50,6 @@ class ShowNews extends Component {
 
     const newsItems = news.map((item) => {
       lastId = item.id > lastId ? item.id : lastId ;
-      console.log('item')
       return (
         <tr key={item.id}>
           <td scope="row">{item.id}</td>

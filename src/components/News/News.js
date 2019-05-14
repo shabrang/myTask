@@ -42,6 +42,9 @@ class News extends Component {
         news[index].request -= 1
       } else {
         this.showMessage('تعداد درخواست های این خبرگزاری به اتمام رسیده است.')
+        setTimeout(() => {
+          this.setState({ message: null })
+        }, 10000) //after 10 second null the message
       }
     }
     this.setState({ news: news })
@@ -118,7 +121,9 @@ class News extends Component {
   }
 
   render () {
+
     return (
+
       <Fragment>
 
         <table className="table table-striped table-hover">
