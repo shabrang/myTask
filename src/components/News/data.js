@@ -2,25 +2,25 @@ export const news = [
   {
     'id': 1,
     'title': 'fars news',
-    'links': [ 'http://farsnews.com', 'http://farsnews.com/news' ],
+    'links': [ 'https://farsnews.com/', 'https://farsnews.com/social' ],
     'request': 500
   },
   {
     'id': 2,
     'title': 'isna news',
-    'links': [ 'http://isna.com', 'http://isna.com/news' ],
+    'links': [ 'https://isna.ir', 'https://isna.ir/service/Economy' ],
     'request': 300
   },
   {
     'id': 3,
     'title': 'mashregh news',
-    'links': [ 'http://mashregh.com' ],
+    'links': [ 'https://mashreghnews.ir/' ],
     'request': 500
   },
   {
     'id': 4,
     'title': 'tabnak news',
-    'links': [ 'http://tabnak.ir' ,'http://tabnak.ir/dla'],
+    'links': [ 'http://tabnak.ir' ,'https://tabnak.ir/fa/cultural'],
     'request': 350
   },
   {

@@ -8,14 +8,14 @@ class ShowNews extends Component {
     return item.links.map((link, index) => {
       return (
         <Fragment key={index}>
-          <span className='badge badge-info ml-2'>
+          <span className='badge badge-warning ml-2'>
             <span
               onClick={() => this.props.deleteLink(item.id, index)}
               className='badge badge-secondary ml-1'
             >
               X
             </span>
-            {link}
+            <a href={link} target='_blank'> {link}</a>
           </span>
         </Fragment>
       )
